@@ -23,9 +23,10 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Install deps (package + dev tools)
+      - name: Install deps
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install -U pip
+          python -m pip install -U "setuptools>=78.1.1" wheel
           pip install -e '.[dev]' bandit pip-audit
 
       # Ruff lint (annotations in PR UI / logs)
@@ -46,6 +47,4 @@ jobs:
 
       # Dependency vulnerability scan
       - name: pip-audit
-        run: pip-audit
-        # If you prefer not to fail the build on vulns, use:
-        # run: pip-audit || true
+        run: pip-audit --skip-editable
