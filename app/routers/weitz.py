@@ -7,8 +7,6 @@ or distribution is prohibited.
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse, Response
 
-from integrations.oauth.schemas import OauthResponsePayload
-
 router = APIRouter()
 
 
@@ -35,7 +33,7 @@ async def upload() -> Response:
 
 @router.post("/file_share/oauth", response_class=JSONResponse)
 async def oauth() -> JSONResponse:
-    payload: OauthResponsePayload = {
+    payload = {
         "access_token": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
         "token_type": "Bearer",
         "expires_in": 3600,
