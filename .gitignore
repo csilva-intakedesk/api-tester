@@ -1,5 +1,10 @@
 .venv
 .logs
 .ruff_cache
+.pytest_cache
+.mypy_cache
+.vscode
 **/__pycache__
 **/DS_Store
+itd_crm_integrations_api_tester.egg-info
+fastapi_app.egg-info
