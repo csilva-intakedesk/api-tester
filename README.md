@@ -1,3 +1,5 @@
+[![CI](https://github.com/csilva-intakedesk/api-tester/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/<OWNER>/<REPO>/actions/workflows/ci.yml)
+
 # api-tester
 
 Small FastAPI project with routes separated into categorized routers. This repo is intended as a local API test harness to emulate endpoints used by integrations.
