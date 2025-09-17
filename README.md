@@ -9,7 +9,6 @@ Small FastAPI project with routes separated into categorized routers. This repo 
 - `app/` — FastAPI application package
   - `main.py` — App bootstrap and router registration
   - `routers/` — Per-category routers (e.g. `litify.py`, `napoli.py`, etc.)
-  - `integrations/` - Schemas for the various response Payloads.
 - `tests/` - FastAPI application tests
 - `scripts/` — Helper scripts (e.g. `start_with_ngrok.sh`)
 - `requirements.txt` — Minimal Python dependencies
