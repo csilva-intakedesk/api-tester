@@ -1,0 +1,39 @@
+repos:
+  # Core repo hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: check-added-large-files
+
+  # Ruff: lint + format (fast, opinionated)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix] # autofix, then fail if edits were needed
+      - id: ruff-format # formatter (Black-compatible)
+
+  # Typing (choose one: mypy is easiest to run in pre-commit)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
+        additional_dependencies: ["types-requests", "types-python-dateutil"]
+
+  # Security (lightweight rules via Ruff’s Bandit plugin; optional)
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.9
+    hooks:
+      - id: bandit
+        args: ["-q", "-r", "app", "-x", "tests"] # scan app/, exclude tests/
+        pass_filenames: false
+
+  # Supply-chain: vulnerable deps audit (optional)
+  - repo: https://github.com/trailofbits/pip-audit
+    rev: v2.7.3
+    hooks:
+      - id: pip-audit

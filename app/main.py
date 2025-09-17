@@ -1,31 +1,40 @@
+"""
+Copyright (c) 2025 IntakeDesk LLC. All rights reserved.
+Proprietary and Confidential. Unauthorized copying, use, modification,
+or distribution is prohibited.
+"""
+
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
 from app.routers import (
+    awko,
     litify,
     litify_czar,
-    awko,
+    napoli,
     saddle,
     smart_case_works,
     weitz,
-    napoli,
 )
 
 app = FastAPI(title="api-tester")
 
-# Register routers via a list to avoid repeating include_router calls
 routers = [
-    (litify.router, "/litify", ["litify"]),
-    (litify_czar.router, "/litify_czar", ["litify_czar"]),
-    (awko.router, "/awko", ["awko"]),
-    (saddle.router, "/saddle", ["saddle"]),
-    (smart_case_works.router, "/smart_case_works", ["smart_case_works"]),
-    (weitz.router, "/weitz", ["weitz"]),
-    (napoli.router, "/napoli", ["napoli"]),
+    (litify.router, "litify"),
+    (litify_czar.router, "litify_czar"),
+    (awko.router, "awko"),
+    (saddle.router, "saddle"),
+    (smart_case_works.router, "smart_case_works"),
+    (weitz.router, "weitz"),
+    (napoli.router, "napoli"),
 ]
 
-for router_obj, prefix, tags in routers:
-    app.include_router(router_obj, prefix=prefix, tags=tags)
+for router_obj, tag in routers:
+    prefix = f"/{tag}"
+    app.include_router(router_obj, prefix=prefix, tags=[tag])
 
 
-@app.get("/healthz")
-async def healthz():
-    return {"status": "ok"}
+@app.get("/healthz", response_class=JSONResponse)
+async def healthz() -> JSONResponse:
+    payload = {"status": "ok"}
+    return JSONResponse(content=payload)

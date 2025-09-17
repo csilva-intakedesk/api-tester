@@ -1,17 +1,24 @@
+"""
+Copyright (c) 2025 IntakeDesk LLC. All rights reserved.
+Proprietary and Confidential. Unauthorized copying, use, modification,
+or distribution is prohibited.
+"""
+
+from secrets import randbelow
+
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-import random
 
 router = APIRouter()
 
 
 @router.post("/retainer", response_class=JSONResponse)
-async def retainer():
+async def retainer() -> JSONResponse:
     payload = {
         "code": 0,
         "message": "Succeeded",
         "data": {
-            "id": random.randint(1, 9999999),
+            "id": f"{randbelow(9999999) + 1:04d}",
             "organizationId": 247,
             "vendorOrganizationId": 376,
             "matterId": "d01b54f71a0d499e806092ca56f3093e",
@@ -21,12 +28,12 @@ async def retainer():
 
 
 @router.post("/document", response_class=JSONResponse)
-async def document():
+async def document() -> JSONResponse:
     payload = {
         "code": 0,
         "message": "Succeeded",
         "data": {
-            "id": random.randint(1, 9999999),
+            "id": f"{randbelow(9999999) + 1:04d}",
             "organizationId": 247,
             "vendorOrganizationId": 376,
             "matterId": "d01b54f71a0d499e806092ca56f3093e",
@@ -36,7 +43,7 @@ async def document():
 
 
 @router.post("/case", response_class=JSONResponse)
-async def case():
+async def case() -> JSONResponse:
     payload = {
         "code": 0,
         "message": "Succeeded",
@@ -81,7 +88,20 @@ async def case():
                 "anyLivingEyeWitness": "No",
                 "usedRoundupCommerciallyResidentially": "Washington",
                 "beToldInjuryRelatedToProduct": "no",
-                "caseSummary": "SENT USPS PACKAGE TO CLIENT WITH HIPAA AUTHORIZATIONS TO EXECUTE WITH AN ORIGINAL SIGNATURE AND RETURN IN PRE-PAID POSTAGE ENVELOPE.\nTRACKING #: 9405511206224863697130\nRETURN TRACKING #: 9405511206224863697352\n(SEE ATTACHED LABEL)\n\nSusan was exposed to Roundup between the years 1992 - 2008 at her residence.\n\nSusan was exposed to Roundup for approximately 45 minutes per day, 4 days per month, 3 months out of the year, for 16 years, totaling 144 hours of exposure.\n\nSusan used the 1.3-gallon Roundup ready-to-spray to eliminate weeds throughout the 1/4-acre landscape, 2-car asphalt driveway, 14 ft. x 10 ft. patio, and the 20 ft. fence line.\n\nSusan's father purchased Roundup to use at the residence.\n\nAt the age of 69, in September 2023, Susan was diagnosed with Nodal Marginal Zone B-cell Lymphoma at Proliance Surgical Specialists of Edmonds Care Center located in Edmonds, Washington.\n\nIn 2023, Susan had a tumor removal performed at Proliance Surgical Specialists of Edmonds Care Center located in Edmonds, Washington.",
+                "caseSummary": """SENT USPS PACKAGE TO CLIENT WITH HIPAA AUTHORIZATIONS TO
+                EXECUTE WITH AN ORIGINAL SIGNATURE AND RETURN IN PRE-PAID POSTAGE ENVELOPE.
+                \nTRACKING #: 9405511206224863697130\nRETURN TRACKING #: 9405511206224863697352
+                \n(SEE ATTACHED LABEL)\n\nSusan was exposed to Roundup between the years 1992 -
+                2008 at her residence.\n\nSusan was exposed to Roundup for approximately
+                45 minutes per day, 4 days per month, 3 months out of the year, for 16 years,
+                totaling 144 hours of exposure.\n\nSusan used the 1.3-gallon Roundup
+                ready-to-spray to eliminate weeds throughout the 1/4-acre landscape,
+                2-car asphalt driveway, 14 ft. x 10 ft. patio, and the 20 ft. fence line.\n\n
+                Susan's father purchased Roundup to use at the residence.\n\nAt the age of 69,
+                in September 2023, Susan was diagnosed with Nodal Marginal Zone B-cell Lymphoma
+                at Proliance Surgical Specialists of Edmonds Care Center located in Edmonds,
+                Washington.\n\nIn 2023, Susan had a tumor removal performed at Proliance Surgical
+                Specialists of Edmonds Care Center located in Edmonds, Washington.""",
                 "lastWill": "unknow",
                 "redFlag": [None],
                 "channel": "intakedesk",
@@ -107,9 +127,7 @@ async def case():
                 "whoisEmployer": "",
                 "behalfZipCode": "98133",
                 "spousePhoneNumber": "",
-                "previousCancerDiagnosesModel": [
-                    {"canerType": "", "dateOfDiagnosis": ""}
-                ],
+                "previousCancerDiagnosesModel": [{"canerType": "", "dateOfDiagnosis": ""}],
                 "provideDeathCertificate": "",
                 "tobaccoModel": {
                     "whenStartedUsingTobaccoProducts": "1978-01-01",
@@ -143,7 +161,8 @@ async def case():
                 "behalfRelation": "Self",
                 "havePoA": "",
                 "bestContactTime": "Anytime - Pacific Standard Time (PST) - Any Day",
-                "behalfContactNotes": "Susan does not feel comfortable providing the full SSN at this time and will provide it to the paralegal/attorney.",
+                "behalfContactNotes": """Susan does not feel comfortable providing the full
+                SSN at this time and will provide it to the paralegal/attorney.""",
                 "emergencyContactFirstName": "",
                 "emergencyContactLastName": "",
                 "emergencyContactPhoneNumber": "",
@@ -174,17 +193,21 @@ async def case():
                 "deathEstateRepresentative": "No",
                 "deathNamedInformant": "No",
                 "moreInfoAboutCase": [False],
-                "residentialRoundupUsageArea": "Landscape: 1/4 Acre\nDriveway: 2 cars, Asphalt\nPatio: 14 ft x 10 ft\nFenceline: 20 ft",
+                "residentialRoundupUsageArea": """Landscape: 1/4 Acre\nDriveway: 2 cars,
+                Asphalt\nPatio: 14 ft x 10 ft\nFenceline: 20 ft""",
                 "residentialRoundupYearFirstUsed": "1992",
                 "residentialRoundupDiscontinued": "Yes",
                 "residentialRoundupYearLastUsed": "2008",
                 "residentialRoundupTotalLifetimeYearsUsed": "16 years ",
-                "residentialRoundupTotalHoursFrequency": "144 hours ( 45 mins/day, 4 days/mo, 3 months/yr, 16 years )",
+                "residentialRoundupTotalHoursFrequency": """144 hours ( 45 mins/day, 4 days/mo,
+                3 months/yr, 16 years )""",
                 "residentialRoundupTotalLifetimeExposure": "192 times used ",
                 "personalProtectiveEquipment": "No",
                 "containerSize": "1.3-gallon Ready To Spray",
                 "sprayerSpreaderTyper": "Sprayer that came with Roundup Bottle",
-                "residentialExposureNote": "Susan used the 1.3-gallon Roundup ready-to-spray to eliminate weeds throughout the 1/4-acre landscape, 2-car asphalt driveway, 14 ft. x 10 ft. patio, and the 20 ft. fence line.",
+                "residentialExposureNote": """Susan used the 1.3-gallon Roundup ready-to-spray to
+                eliminate weeds throughout the 1/4-acre landscape, 2-car asphalt driveway,
+                14 ft. x 10 ft. patio, and the 20 ft. fence line.""",
                 "workUsageArea": "",
                 "workYearFirstUsed": "",
                 "workDiscontinued": "",
@@ -255,7 +278,9 @@ async def case():
                         "hospitalAddress": "21632 Highway 99 \r\n Edmonds, WA 98026",
                         "phoneNumber": "Phone: (425) 673-8300 ",
                         "treatingPhysicianName": "Elizabeth F., Mcgehee, MD",
-                        "reasonForConsultation": "Susan was placed under watch and wait observation and has follow-up visits every 3-6 months with this oncologist.",
+                        "reasonForConsultation": """Susan was placed under watch and wait
+                        observation and has follow-up visits every 3-6 months with
+                        this oncologist.""",
                         "startDateofTreatment": "2023-09-28",
                     }
                 ],
@@ -268,7 +293,8 @@ async def case():
                 "howKnowLovedOneUsedRoundup": "",
                 "diagnosingPhsyicianModel": [
                     {
-                        "diagnosingHospitalName": "Proliance Surgical Specialists of Edmonds Care Center",
+                        "diagnosingHospitalName": """Proliance Surgical Specialists of Edmonds
+                        Care Center""",
                         "diagnosingHospitalAddress": " Edmonds, WA 98026",
                         "diagnosingPhysicianState": "Washington",
                         "diagnosingPhysicianZIP": "98026",
@@ -312,7 +338,8 @@ async def case():
                         "surgeryHospitalCity": "Edmonds",
                         "surgeryHospitalState": "WA",
                         "surgeryEndDate": "2023-10-01",
-                        "surgeryHospitalName": "Proliance Surgical Specialists of Edmonds Care Center",
+                        "surgeryHospitalName": """Proliance Surgical Specialists of Edmonds
+                        Care Center""",
                         "surgeryHospitalPhoneNumber": "(425) 778-8116",
                     }
                 ],

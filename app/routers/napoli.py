@@ -1,3 +1,9 @@
+"""
+Copyright (c) 2025 IntakeDesk LLC. All rights reserved.
+Proprietary and Confidential. Unauthorized copying, use, modification,
+or distribution is prohibited.
+"""
+
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse, Response
 
@@ -5,7 +11,7 @@ router = APIRouter()
 
 
 @router.post("/ClientHCPs", response_class=JSONResponse)
-async def ClientHCPs():
+async def client_hcps() -> JSONResponse:
     payload = {
         "facilityName": "string",
         "fName": "string",
@@ -31,7 +37,7 @@ async def ClientHCPs():
 
 
 @router.post("/ClientHCPsWithInjuries", response_class=JSONResponse)
-async def ClientHCPsWithInjuries():
+async def client_hcps_with_injuries() -> JSONResponse:
     payload = {
         "facilityName": "string",
         "fName": "string",
@@ -66,7 +72,7 @@ async def ClientHCPsWithInjuries():
 
 
 @router.post("/ClientInjuries/{sysid}", response_class=JSONResponse)
-async def ClientInjuries(sysid: str):
+async def client_injuries(sysid: str) -> JSONResponse:
     payload = [
         {
             "sysid": "stringstringstri",
@@ -80,7 +86,7 @@ async def ClientInjuries(sysid: str):
 
 
 @router.post("/ClientStage", response_class=JSONResponse)
-async def ClientStage():
+async def client_stage() -> JSONResponse:
     payload = {
         "leadID": "string",
         "ccode": "stri",
@@ -115,9 +121,9 @@ async def ClientStage():
 
 
 @router.post("/EmergencyContact/{sysid}", response_class=JSONResponse)
-async def EmergencyContact(sysid: str):
+async def emergency_contact(sysid: str) -> JSONResponse:
     payload = {
-        "sysid": "string",
+        "sysid": sysid,
         "altFirstName": "string",
         "altLastName": "string",
         "altAddress": "string",
@@ -139,7 +145,7 @@ async def EmergencyContact(sysid: str):
 
 
 @router.post("/Fiduciary", response_class=JSONResponse)
-async def Fiduciary():
+async def fiduciary() -> JSONResponse:
     payload = {
         "fiduciary_Type": "string",
         "fiduciary_Salutation": "string",
@@ -177,7 +183,7 @@ async def Fiduciary():
 
 
 @router.post("/FileUpload", response_class=JSONResponse)
-async def FileUpload():
+async def file_upload() -> JSONResponse:
     payload = {
         "uploadId": 0,
         "sysID": "string",
@@ -194,7 +200,7 @@ async def FileUpload():
 
 
 @router.post("/GetNewSysId", response_class=JSONResponse)
-async def GetNewSysId():
+async def get_new_sys_id() -> JSONResponse:
     payload = {
         "LeadID": "166987",
         "CCODE": "MSW",
@@ -216,7 +222,31 @@ async def GetNewSysId():
         "SSN": "9259",
         "DOB": "1963-05-28T00:00:00",
         "Injury": None,
-        "AdditionalNotes": "Power of Attorney? N/A\r\nBest Contact Time: Anytime - Eastern Standard Time (EST) - Any Day\r\nClient Contact Notes: Prefers to be called Rick.\n\nRicky does not feel comfortable providing the full SSN at this time and will provide it to the paralegal/attorney.\r\nInjured Party Marital Status: Married\r\nExecutor of Will: No\r\nEstate Representative: No\r\nTotal Exposure Start/Stop Years: <b>From:</b> 09/01/1984 <b>To:</b> 01/01/2000\r\nTotal Lifetime Exposure: 16 year(s)\r\nPhase One List Match: Yes, 2 Phase One location(s) matched.\r\nPWS ID Matches: PWS ID: VA2770900\r\nPWS Name: WESTERN VIRGINIA WATER AUTHORITY\r\nPWS ZIP Code(s): 24019\r\nPWS State: VA\r\nPrimary Source: Surfacewater \r\nPWS Name: McClellan AFB\r\nBlood Tested for PFAS: No\r\nSummary: SENT USPS PACKAGE TO CLIENT WITH HIPAA AUTHORIZATIONS TO EXECUTE WITH AN ORIGINAL SIGNATURE AND RETURN IN PRE-PAID POSTAGE ENVELOPE.\r\nTRACKING #: 9405511206224849462264\r\nRETURN TRACKING #: 9405511206224849462240\r\n(SEE ATTACHED LABEL)\r\n\r\nRicky claims he was exposed to PFAS-contaminated drinking water while living and working at 1 location between the years 1987 - 2000 that are on the Phase One list.\r\n\r\nRicky served in the military from 1982 - 1985. Ricky claims he was exposed to PFAS-contaminated drinking water while working/living on a military base between the years 1984 - 1985 that are on the Phase One list.\r\n\r\nRicky was exposed for approximately 6 years prior to being diagnosed with Testicular Cancer.\r\n\r\nAt the age of 49, in May 2013, Ricky was diagnosed with Testicular Cancer at Centra Bedford Memorial Hospital in Bedford, Virginia.\r\n\r\nIn May 2013, Ricky had a total orchiectomy performed at Centra Virginia Baptist Hospital located in Bedford, Virginia.\r\n\r\nAt the age of 59, in May 2023, Ricky was diagnosed with Testicular Cancer at Centra Bedford Memorial Hospital in Bedford, Virginia.\r\n\r\nIn May 2023, Ricky began a cycle of chemotherapy at Centra Alan B. Pearson Regional Cancer Center in Lynchburg, Virginia.\r\n",
+        "AdditionalNotes": """Power of Attorney? N/A\r\nBest Contact Time: Anytime -
+        Eastern Standard Time (EST) - Any Day\r\nClient Contact Notes: Prefers to be
+        called Rick.\n\nRicky does not feel comfortable providing the full SSN at this
+        time and will provide it to the paralegal/attorney.\r\nInjured Party Marital Status:
+        Married\r\nExecutor of Will: No\r\nEstate Representative: No\r\nTotal Exposure Start/Stop
+        Years: <b>From:</b> 09/01/1984 <b>To:</b> 01/01/2000\r\nTotal Lifetime Exposure:
+        16 year(s)\r\nPhase One List Match: Yes, 2 Phase One location(s) matched.\r\n
+        PWS ID Matches: PWS ID: VA2770900\r\nPWS Name: WESTERN VIRGINIA WATER AUTHORITY\r\n
+        PWS ZIP Code(s): 24019\r\nPWS State: VA\r\nPrimary Source: Surfacewater \r\n
+        PWS Name: McClellan AFB\r\nBlood Tested for PFAS: No\r\nSummary: SENT USPS PACKAGE
+        TO CLIENT WITH HIPAA AUTHORIZATIONS TO EXECUTE WITH AN ORIGINAL SIGNATURE AND RETURN
+        IN PRE-PAID POSTAGE ENVELOPE.\r\nTRACKING #: 9405511206224849462264\r\n
+        RETURN TRACKING #: 9405511206224849462240\r\n(SEE ATTACHED LABEL)\r\n\r\nRicky claims
+        he was exposed to PFAS-contaminated drinking water while living and working at 1
+        location between the years 1987 - 2000 that are on the Phase One list.\r\n\r\nRicky
+        erved in the military from 1982 - 1985. Ricky claims he was exposed to PFAS-contaminated
+        drinking water while working/living on a military base between the years 1984 - 1985
+        that are on the Phase One list.\r\n\r\nRicky was exposed for approximately 6 years prior
+        to being diagnosed with Testicular Cancer.\r\n\r\nAt the age of 49, in May 2013, Ricky
+        was diagnosed with Testicular Cancer at Centra Bedford Memorial Hospital in Bedford,
+        Virginia.\r\n\r\nIn May 2013, Ricky had a total orchiectomy performed at Centra Virginia
+        Baptist Hospital located in Bedford, Virginia.\r\n\r\nAt the age of 59, in May 2023,
+        Ricky was diagnosed with Testicular Cancer at Centra Bedford Memorial Hospital in Bedford,
+        Virginia.\r\n\r\nIn May 2023, Ricky began a cycle of chemotherapy at Centra Alan B.
+        Pearson Regional Cancer Center in Lynchburg, Virginia.\r\n""",
         "Deceased": False,
         "DateOfDeath": None,
         "Trade": None,
@@ -234,7 +264,7 @@ async def GetNewSysId():
 
 
 @router.post("/ResidentialHistory", response_class=JSONResponse)
-async def ResidentialHistory():
+async def residential_history() -> JSONResponse:
     payload = {
         "sysid": "string",
         "address1": "string",
@@ -253,5 +283,5 @@ async def ResidentialHistory():
 
 
 @router.post("/Token", response_class=Response)
-async def Token():
+async def token() -> JSONResponse:
     return JSONResponse(content="Ym9zY236Ym9zY28=")

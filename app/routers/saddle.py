@@ -1,11 +1,20 @@
+"""
+Copyright (c) 2025 IntakeDesk LLC. All rights reserved.
+Proprietary and Confidential. Unauthorized copying, use, modification,
+or distribution is prohibited.
+"""
+
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
+
+from integrations.litify.schemas import DocumentResponsePayload
+from integrations.oauth.schemas import OauthResponsePayload
 
 router = APIRouter()
 
 
 @router.post("/case", response_class=JSONResponse)
-async def case():
+async def case() -> JSONResponse:
     payload = {
         "data": {
             "Exposures": [
@@ -79,7 +88,23 @@ async def case():
             "Cilent Estate Opened": None,
             "Intake Retainer Signed": "2025-01-31T00:00:00.000Z",
             "Intake Retainer Sent": "2025-01-31T00:00:00.000Z",
-            "Intake Description": "Kevin was exposed to Roundup between the years 2016 - 2020 at his residences.\n\nKevin was exposed to Roundup for approximately 30 minutes per day, 4 days per month, 3 months out of the year, for 4 years, totaling 24 hours of exposure.\n\nKevin used the 1.3-gallon of Roundup ready-to-spray to eliminate weeds throughout the 1/4 acre landscape, 3 cars pavers driveway, 10 ft. x 10 ft. patio, 2 ft. x 1 ft. flowerbed area, 10 ft. sidewalk, and 500 ft. fence line.\n\nKevin was exposed to Roundup while employed as an Groundskeeper with Cedar Creek Golf Course between the years 2015 - 2016.\n\nKevin was exposed to Roundup for approximately 1 hour per day, 4 days per month, 3 months out of the year, for 1 years, totaling 12 hours of exposure.\n\nKevin used the 2.5-gallon of Roundup concentrate mixed into a container with a larger handheld pump sprayer. Kevin sprayed Roundup throughout the 80-acre golf course. \n\nKevin purchased Roundup from Poteau True Value Hardware to use at the residences and while working.\n\nAt the age of 37, on or about, 07/01/2022, Kevin was diagnosed with Adult T-cell lymphoma/leukemia, at Mercy Hospital Fort Smith located in Fort Smith, Arkansas.\n\nOn or about 07/25/2022, Kevin began a cycle of chemotherapy at Choctaw Nation Healthcare Center located in Talihina, Oklahoma.",
+            "Intake Description": """Kevin was exposed to Roundup between the years 2016 - 2020
+            at his residences.\n\nKevin was exposed to Roundup for approximately 30 minutes per day,
+              4 days per month, 3 months out of the year, for 4 years, totaling 24 hours of
+              exposure.\n\nKevin used the 1.3-gallon of Roundup ready-to-spray to eliminate weeds
+              throughout the 1/4 acre landscape, 3 cars pavers driveway, 10 ft. x 10 ft. patio,
+              2 ft. x 1 ft. flowerbed area, 10 ft. sidewalk, and 500 ft. fence line.\n\nKevin
+              was exposed to Roundup while employed as an Groundskeeper with Cedar Creek Golf
+              Course between the years 2015 - 2016.\n\nKevin was exposed to Roundup for
+              approximately 1 hour per day, 4 days per month, 3 months out of the year, for 1
+              years, totaling 12 hours of exposure.\n\nKevin used the 2.5-gallon of Roundup
+              concentrate mixed into a container with a larger handheld pump sprayer. Kevin
+              sprayed Roundup throughout the 80-acre golf course. \n\nKevin purchased Roundup
+              from Poteau True Value Hardware to use at the residences and while working.
+              \n\nAt the age of 37, on or about, 07/01/2022, Kevin was diagnosed with Adult
+              T-cell lymphoma/leukemia, at Mercy Hospital Fort Smith located in Fort Smith,
+              Arkansas.\n\nOn or about 07/25/2022, Kevin began a cycle of chemotherapy at
+              Choctaw Nation Healthcare Center located in Talihina, Oklahoma.""",
             "IntakeId": "a0CTI00002Xv1df2AB",
         },
         "success": True,
@@ -88,8 +113,8 @@ async def case():
 
 
 @router.post("/document", response_class=JSONResponse)
-async def document():
-    payload = {
+async def document() -> JSONResponse:
+    payload: DocumentResponsePayload = {
         "relatedVendorMatterId": "DEMOTEST-SELFREP-20250601",
         "documents": [
             {
@@ -102,8 +127,8 @@ async def document():
 
 
 @router.post("/oauth", response_class=JSONResponse)
-async def oauth():
-    payload = {
+async def oauth() -> JSONResponse:
+    payload: OauthResponsePayload = {
         "access_token": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
         "token_type": "Bearer",
         "expires_in": 3600,
