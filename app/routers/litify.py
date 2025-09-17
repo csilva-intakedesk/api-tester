@@ -7,14 +7,12 @@ or distribution is prohibited.
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from integrations.litify.schemas import CaseResponsePayload, DocumentResponsePayload
-
 router = APIRouter()
 
 
 @router.post("/case", response_class=JSONResponse)
 async def case() -> JSONResponse:
-    payload: CaseResponsePayload = {
+    payload = {
         "intakeId": "a0CWD000044DO1l2AG",
         "message": "intake created successfully.",
     }
@@ -23,7 +21,7 @@ async def case() -> JSONResponse:
 
 @router.post("/document", response_class=JSONResponse)
 async def document() -> JSONResponse:
-    payload: DocumentResponsePayload = {
+    payload = {
         "relatedVendorMatterId": "a0CWD000044DO1l2AG",
         "documents": [
             {

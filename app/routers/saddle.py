@@ -7,9 +7,6 @@ or distribution is prohibited.
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from integrations.litify.schemas import DocumentResponsePayload
-from integrations.oauth.schemas import OauthResponsePayload
-
 router = APIRouter()
 
 
@@ -114,7 +111,7 @@ async def case() -> JSONResponse:
 
 @router.post("/document", response_class=JSONResponse)
 async def document() -> JSONResponse:
-    payload: DocumentResponsePayload = {
+    payload = {
         "relatedVendorMatterId": "DEMOTEST-SELFREP-20250601",
         "documents": [
             {
@@ -128,7 +125,7 @@ async def document() -> JSONResponse:
 
 @router.post("/oauth", response_class=JSONResponse)
 async def oauth() -> JSONResponse:
-    payload: OauthResponsePayload = {
+    payload = {
         "access_token": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
         "token_type": "Bearer",
         "expires_in": 3600,
